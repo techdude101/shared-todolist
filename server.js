@@ -7,8 +7,8 @@ app.use(express.static('build/static/'));
 
 /* GET React App */
 const publicPath = path.join(__dirname, 'build');
-app.use("/app", express.static(publicPath));
-app.get("/app/*", (req, res) => {
+app.use("/", express.static(publicPath));
+app.get("/*", (req, res) => {
     res.sendFile(path.join(__dirname + 'build/index.html'));
 });
 
