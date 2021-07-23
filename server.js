@@ -6,15 +6,9 @@ const app = express();
 app.use(express.static('build/static/'));
 
 /* GET React App */
-// if (process.env.NODE_ENV === 'production') {
-//     const publicPath = path.join(__dirname, 'build');
-//     app.use(express.static(publicPath));
-//     app.use('*', express.static(publicPath));
-// }
-
 const publicPath = path.join(__dirname, 'build');
-app.use(express.static(publicPath));
-app.get("/*", (req, res) => {
+app.use("/app", express.static(publicPath));
+app.get("/app/*", (req, res) => {
     res.sendFile(path.join(__dirname + 'build/index.html'));
 });
 
