@@ -6,7 +6,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter basename={window.location.pathname || ''}>
+    <BrowserRouter basename="/shared-todolist">
       <App />
     </BrowserRouter>
   </React.StrictMode>,

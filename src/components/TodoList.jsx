@@ -26,7 +26,7 @@ const TodoList = () => {
     const loadTodosFromDB = async () => {
       try {
         const data = await fetch(`${URL}/${id}`,
-          { method: 'GET' });
+          { method: 'GET', mode: "cors" });
         const jsonData = await data.json();
         // API returns message: "No data" if not found in DB
         if (jsonData[0].todos !== undefined) return jsonData[0].todos;
@@ -42,9 +42,9 @@ const TodoList = () => {
 
       if ((localTodos !== null) && (dbTodos !== null)) {
         localTodos.length > dbTodos.length ? setTodos(localTodos) : setTodos(dbTodos);
-      } else if (dbTodos === null) {
+      } else if ((dbTodos === null) && (localTodos !== null)) {
         setTodos(localTodos);
-      } else if (localTodos === null) {
+      } else if ((localTodos === null) && (dbTodos !== null)) {
         setTodos(dbTodos);
       }
     }
@@ -56,7 +56,7 @@ const TodoList = () => {
     // Check if id already in DB
     const loadTodosFromDB = async () => {
       const data = await fetch(`${URL}/${id}`,
-        { method: 'GET' });
+        { method: 'GET', mode: "cors" });
       const jsonData = await data.json();
       if (jsonData.message === undefined) return true; // API returns message: "No data" if not found in DB
       return false;
@@ -76,7 +76,8 @@ const TodoList = () => {
         {
           method: updateMethod,
           body: JSON.stringify({ todos: todos }),
-          headers: { 'Content-type': 'application/json; charset=UTF-8' }
+          headers: { 'Content-type': 'application/json; charset=UTF-8' },
+          mode: "cors"
         })
         .then(response => response.json())
         .catch(err => console.log(err))
@@ -97,11 +98,12 @@ const TodoList = () => {
 
   const addTodo = (todo) => {
     // Limit the number of todos to 50
-    if (todos.length < 50) {
-      const todosCopy = [...todos];
-      todosCopy.push(todo);
-      setTodos(todosCopy);
+    if ((todos !== null) && (todos.length > 49)) {
+      return;
     }
+    const todosCopy = [...todos];
+    todosCopy.push(todo);
+    setTodos(todosCopy);
   }
 
   const renderTodos = () => {
