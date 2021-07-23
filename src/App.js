@@ -9,8 +9,9 @@ function App() {
   return (
     <main className="App">
       <Switch>
-        <Route path="/" component={Home} exact />
-        <Route exact path="/list/:id" component={TodoList} />
+        <Route exact path="/" component={Home} />
+        <Route exact path={`${window.location.pathname || ''}/list/:id`} component={TodoList} />
+        <Route component={Error} />
       </Switch>
     </main>
   );

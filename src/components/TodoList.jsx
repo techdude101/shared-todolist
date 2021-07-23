@@ -4,7 +4,7 @@ import Header from './Header';
 import Form from './Form';
 import Todos from './Todos';
 
-const URL = "http://shared-todolist-api.herokuapp.com/todos";
+const URL = "https://shared-todolist-api.herokuapp.com/todos";
 
 const TodoList = () => {
   const [loaded, setLoaded] = useState(false);
@@ -107,8 +107,10 @@ const TodoList = () => {
   const renderTodos = () => {
     if (todos && loaded) {
       return <Todos todos={todos} setTodos={setTodos} />
-    } else {
+    } else if (!loaded) {
       return <h2>Loading...</h2>
+    } else {
+      return;
     }
   }
 
