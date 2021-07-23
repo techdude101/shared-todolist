@@ -4,7 +4,7 @@ import Header from './Header';
 import Form from './Form';
 import Todos from './Todos';
 
-const URL = "http://192.168.0.13:3000/todos";
+const URL = "http://shared-todolist-api.herokuapp.com/todos";
 
 const TodoList = () => {
   const [loaded, setLoaded] = useState(false);
