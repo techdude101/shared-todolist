@@ -46,6 +46,8 @@ const TodoList = () => {
         setTodos(localTodos);
       } else if ((localTodos === null) && (dbTodos !== null)) {
         setTodos(dbTodos);
+      } else {
+        setTodos([]);
       }
     }
     loadData();

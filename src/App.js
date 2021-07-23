@@ -11,8 +11,8 @@ function App() {
     <main className="App">
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route exact path="/list/:id" component={TodoList} />
-        <Route path="*" component={Error} />
+        <Route path={`${process.env.PUBLIC_URL}/list/:id`} component={TodoList} />
+        <Route component={Error} />
       </Switch>
     </main>
   );
