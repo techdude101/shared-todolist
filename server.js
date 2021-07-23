@@ -10,7 +10,7 @@ const publicPath = path.join(__dirname, 'build');
 app.use("/", express.static(publicPath));
 
 app.get("/list/*", (req, res) => {
-    res.redirect("/#" + req.route.path);
+    res.redirect("/#" + req.path);
 });
 
 app.get("/*", (req, res) => {
